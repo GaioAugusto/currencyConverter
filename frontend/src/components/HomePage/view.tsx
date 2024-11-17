@@ -1,3 +1,4 @@
+import { CurrencySelector } from "./components/CurrencySelector";
 import { HomePageViewProps } from "./types";
 
 type ComponentType = React.FC<HomePageViewProps>;
@@ -19,13 +20,17 @@ export const HomePageView: ComponentType = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center pt-10 h-full">
         <h1 className="text-5xl font-bold text-purple-900 mb-6">
           Currency Converter
         </h1>
         <p className="text-lg text-purple-700">
           Convert currencies with real-time exchange rates.
         </p>
+        <div className="flex flex-row pt-16 space-x-4">
+          <CurrencySelector placeholder="From" />
+          <CurrencySelector placeholder="To" />
+        </div>
       </div>
     </section>
   );

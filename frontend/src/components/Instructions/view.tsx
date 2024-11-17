@@ -14,10 +14,10 @@ export const InstructionsView: ComponentType = () => {
       <div className="absolute top-1/3 right-1/4 text-purple-300 text-7xl opacity-20 animate-float-slow">
         €
       </div>
-      <div className="absolute bottom-10 left-1/2 text-purple-400 text-9xl opacity-30 animate-float-fast">
+      <div className="absolute bottom-10 left-3/4 text-purple-400 text-9xl opacity-20 animate-float-fast">
         ¥
       </div>
-      <div className="absolute top-1/2 right-10 text-purple-300 text-7xl opacity-20 animate-float-slow">
+      <div className="absolute top-1/2 right-10 text-purple-300 text-7xl opacity-30 animate-float-slow">
         £
       </div>
       <div className="absolute bottom-1/3 left-1/4 text-purple-200 text-6xl opacity-25 animate-float-fast">

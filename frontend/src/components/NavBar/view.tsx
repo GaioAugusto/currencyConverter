@@ -19,7 +19,7 @@ export const NavBarView: ComponentType = ({ menuItems }) => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-10 font-sans transition-colors duration-500 ease-out ${
-        isScrolled ? "bg-purple-300 shadow-md" : "bg-transparent"
+        isScrolled ? "bg-purple-300 shadow-md opacity-95" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
