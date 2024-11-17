@@ -1,7 +1,11 @@
-import { NavBarProps } from "./types";
+import { MenuItem, NavBarProps } from "./types";
 import { NavBarView } from "./view";
 
 type ComponentType = React.FC<NavBarProps>;
 export const NavBar: ComponentType = () => {
-  return <NavBarView />;
+  const menuItems: MenuItem[] = [
+    { label: "Home", href: "#home" },
+    { label: "How it works", href: "#instructions" },
+  ];
+  return <NavBarView menuItems={menuItems} />;
 };
