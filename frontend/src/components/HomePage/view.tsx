@@ -1,3 +1,5 @@
+import { AmountCard } from "./components/AmountCard";
+import { ConversionCard } from "./components/ConversionCard";
 import { CurrencySelector } from "./components/CurrencySelector";
 import { HomePageViewProps } from "./types";
 
@@ -27,9 +29,8 @@ export const HomePageView: ComponentType = () => {
         <p className="text-lg text-purple-700">
           Convert currencies with real-time exchange rates.
         </p>
-        <div className="flex flex-row pt-16 space-x-4">
-          <CurrencySelector placeholder="From" />
-          <CurrencySelector placeholder="To" />
+        <div className="pt-10">
+          <ConversionCard />
         </div>
       </div>
     </section>
