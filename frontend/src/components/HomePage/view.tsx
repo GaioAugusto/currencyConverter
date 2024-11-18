@@ -1,6 +1,4 @@
-import { AmountCard } from "./components/AmountCard";
 import { ConversionCard } from "./components/ConversionCard";
-import { CurrencySelector } from "./components/CurrencySelector";
 import { HomePageViewProps } from "./types";
 
 type ComponentType = React.FC<HomePageViewProps>;
