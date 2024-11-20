@@ -5,7 +5,6 @@ def parse_data():
     from dotenv import load_dotenv, find_dotenv
     import os
 
-    # Dynamically locate and load .env file
     load_dotenv(find_dotenv())
 
     # Database connection
@@ -27,7 +26,6 @@ def parse_data():
         print(f"Error: {err}")
         return
 
-    # Dynamically locate the CSV file in the data folder
     current_dir = os.path.dirname(os.path.abspath(__file__))
     csv_file_path = os.path.join(current_dir, "../data/exchange_rates.csv")
 
