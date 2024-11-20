@@ -1,54 +1,64 @@
-from dotenv import load_dotenv, find_dotenv
-import os
+def parse_data():
+    import pandas as pd
+    import mysql.connector
+    from datetime import datetime
+    from dotenv import load_dotenv, find_dotenv
+    import os
 
-# Dynamically locate and load .env file
-load_dotenv(find_dotenv())
+    # Dynamically locate and load .env file
+    load_dotenv(find_dotenv())
 
-print(f"Loaded DB_HOST: {os.getenv('DB_HOST')}")
+    # Database connection
+    try:
+        db_host = os.getenv("DB_HOST")
+        db_user = os.getenv("DB_USER")
+        db_password = os.getenv("DB_PASSWORD")
+        db_name = os.getenv("DB_NAME")
 
-# Get database credentials from environment variables
-db_host = os.getenv("DB_HOST")
-db_user = os.getenv("DB_USER")
-db_password = os.getenv("DB_PASSWORD")
-db_name = os.getenv("DB_NAME")
+        conn = mysql.connector.connect(
+            host=db_host,
+            user=db_user,
+            password=db_password,
+            database=db_name
+        )
+        cursor = conn.cursor()
+        print("Database connection successful!")
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        return
 
-print(f"DB_HOST={db_host}, DB_USER={db_user}, DB_PASSWORD={db_password}, DB_NAME={db_name}")
+    # Dynamically locate the CSV file in the data folder
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_file_path = os.path.join(current_dir, "../data/exchange_rates.csv")
 
+    try:
+        df = pd.read_csv(csv_file_path)
+        df = df.iloc[:, :-1]  # Drop the last column
+        print("CSV file loaded successfully!")
+        df['Date'] = pd.to_datetime(df['Date'], format='%d %B %Y').dt.date
+    except Exception as e:
+        print(f"Error processing CSV file: {e}")
+        return
 
-# # Database connection
-# conn = mysql.connector.connect(
-#     host=db_host,
-#     user=db_user,
-#     password=db_password,
-#     database=db_name
-# )
-# cursor = conn.cursor()
+    try:
+        for _, row in df.iterrows():
+            date = row['Date']
+            for currency in df.columns[1:]:
+                rate = row[currency]
+                cursor.execute(
+                    """
+                    REPLACE INTO exchange_rates (currency_code, rate, last_updated)
+                    VALUES (%s, %s, %s)
+                    """,
+                    (currency.strip(), rate, date)
+                )
+        conn.commit()
+        print("Database successfully updated with exchange rates!")
+    except mysql.connector.Error as err:
+        print(f"Error updating the database: {err}")
+    finally:
+        cursor.close()
+        conn.close()
 
-# # Path to your CSV file
-# csv_file_path = "path/to/your/exchange_rates.csv"  # Replace with your actual file path
-
-# # Read the CSV file using pandas
-# df = pd.read_csv(csv_file_path)
-
-# # Convert the "Date" column to a proper datetime object
-# df['Date'] = pd.to_datetime(df['Date'], format='%d %B %Y').dt.date
-
-# # Iterate through each row and update the database
-# for _, row in df.iterrows():
-#     date = row['Date']  # Get the date from the "Date" column
-#     for currency in df.columns[1:]:  # Skip the "Date" column
-#         rate = row[currency]
-#         # Insert or update the database
-#         cursor.execute(
-#             """
-#             REPLACE INTO exchange_rates (currency_code, rate, last_updated)
-#             VALUES (%s, %s, %s)
-#             """,
-#             (currency, rate, date)
-#         )
-
-# # Commit changes and close the connection
-# conn.commit()
-# conn.close()
-
-# print("Database successfully updated with exchange rates!")
+if __name__ == "__main__":
+    parse_data()
