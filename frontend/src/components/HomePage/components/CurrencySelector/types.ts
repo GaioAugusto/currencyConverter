@@ -15,6 +15,8 @@ export interface CurrencyOption {
 // Props for the CurrencySelector component
 export interface CurrencySelectorProps {
   placeholder?: string;
+  selectedCurrency: string;
+  setSelectedCurrency: React.Dispatch<React.SetStateAction<string>>;
 }
 
 // Props for the CurrencySelectorView component

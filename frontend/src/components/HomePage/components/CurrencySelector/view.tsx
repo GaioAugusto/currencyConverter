@@ -22,61 +22,51 @@ export const CurrencySelectorView: React.FC<CurrencySelectorViewProps> = ({
         styles={{
           control: (base, state) => ({
             ...base,
-            backgroundColor: "#ffffff", // Dropdown background
-            border: state.isFocused
-              ? "1px solid #d4bff9" // Purple border on focus
-              : "1px solid #e0e0e0", // Default border
+            backgroundColor: "#ffffff",
+            border: state.isFocused ? "1px solid #d4bff9" : "1px solid #e0e0e0",
             borderRadius: "8px",
             boxShadow: state.isFocused
-              ? "0 0 0 2px rgba(212, 191, 249, 0.5)" // Purple shadow on focus
+              ? "0 0 0 2px rgba(212, 191, 249, 0.5)"
               : "none",
             padding: "4px",
             fontSize: "16px",
             fontWeight: "500",
             color: "#4a4a4a",
-            transition: "border-color 0.2s ease, box-shadow 0.2s ease",
             "&:hover": {
-              border: "1px solid #d4bff9", // Ensure hover matches focus
+              border: "1px solid #d4bff9",
             },
           }),
           menu: (base) => ({
             ...base,
-            backgroundColor: "#ffffff", // Menu background
+            backgroundColor: "#ffffff",
             borderRadius: "8px",
-            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)", // Subtle shadow
+            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
           }),
           option: (base, state) => ({
             ...base,
-            backgroundColor: state.isFocused
-              ? "#f3e8ff" // Light purple on hover
-              : "#ffffff", // Default for others (including selected)
-            color: state.isFocused
-              ? "#4a4a4a" // Dark gray for hovered text
-              : state.isSelected
-              ? "#4a4a4a" // Keep selected text dark gray
-              : "#6b46c1", // Default purple text for non-selected
+            backgroundColor: state.isFocused ? "#f3e8ff" : "#ffffff",
+            color: state.isFocused ? "#4a4a4a" : "#6b46c1",
             padding: "10px",
             cursor: "pointer",
             "&:hover": {
-              backgroundColor: "#f3e8ff", // Same hover color for options
+              backgroundColor: "#f3e8ff",
             },
           }),
           singleValue: (base) => ({
             ...base,
-            color: "#4a4a4a", // Selected value color
+            color: "#4a4a4a",
           }),
           placeholder: (base) => ({
             ...base,
-            color: "#9b82cc", // Subtle purple placeholder
+            color: "#9b82cc",
           }),
           dropdownIndicator: (base, state) => ({
             ...base,
-            color: state.isFocused ? "#9b82cc" : "#d4bff9", // Dropdown arrow
-            transition: "color 0.2s ease",
+            color: state.isFocused ? "#9b82cc" : "#d4bff9",
           }),
           indicatorSeparator: (base) => ({
             ...base,
-            backgroundColor: "#d4bff9", // Purple separator
+            backgroundColor: "#d4bff9",
           }),
         }}
       />
