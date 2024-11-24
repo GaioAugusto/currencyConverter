@@ -1,10 +1,9 @@
-def parse_data():
-    import pandas as pd
-    import mysql.connector
-    from datetime import datetime
-    from dotenv import load_dotenv, find_dotenv
-    import os
+import pandas as pd
+import mysql.connector
+from dotenv import load_dotenv, find_dotenv
+import os
 
+def parse_data():
     load_dotenv(find_dotenv())
 
     # Database connection
@@ -57,6 +56,3 @@ def parse_data():
     finally:
         cursor.close()
         conn.close()
-
-if __name__ == "__main__":
-    parse_data()
