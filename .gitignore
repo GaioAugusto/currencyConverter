@@ -1,4 +1,5 @@
 # Frontend-specific
+node_modules/
 frontend/.env
 frontend/.env.local
 frontend/.env.production
