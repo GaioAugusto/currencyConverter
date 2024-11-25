@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-CORS(app)  # Allow requests from any origin (adjust for production if needed)
+CORS(app)  # Enable CORS (adjust allowed origins for security in production)
 
 # Load environment variables
 load_dotenv()
@@ -16,29 +16,34 @@ db_config = {
     "user": os.getenv("DB_USER"),
     "password": os.getenv("DB_PASSWORD"),
     "database": os.getenv("DB_NAME"),
+    "port": int(os.getenv("DB_PORT", 3306)),  # Ensure port is correctly parsed
 }
 
 def get_db_connection():
     """Establish and return a database connection."""
-    conn = mysql.connector.connect(**db_config)
-    return conn
+    try:
+        conn = mysql.connector.connect(**db_config)
+        return conn
+    except mysql.connector.Error as err:
+        print(f"Error connecting to the database: {err}")
+        return None
 
 @app.route("/", methods=["GET"])
 def index():
     return jsonify({"message": "Welcome to the Currency Converter API!"})
 
-@app.route("/api/exchange-rates", methods=["GET"])  # Move this above the function definition
+@app.route("/api/exchange-rates", methods=["GET"])
 def get_exchange_rates():
     """Fetch exchange rates from the database and return as JSON."""
-    try:
-        conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
+    conn = get_db_connection()
+    if conn is None:
+        return jsonify({"success": False, "error": "Database connection failed"}), 500
 
-        # Query to fetch exchange rates
+    try:
+        cursor = conn.cursor(dictionary=True)
         query = "SELECT currency_code, rate, last_updated FROM exchange_rates ORDER BY last_updated DESC"
         cursor.execute(query)
         rates = cursor.fetchall()
-
         return jsonify({"success": True, "data": rates})
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
@@ -47,4 +52,4 @@ def get_exchange_rates():
         conn.close()
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)  # Ensure the app runs on the correct interface
