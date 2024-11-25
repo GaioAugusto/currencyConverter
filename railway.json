@@ -1,3 +1,9 @@
 {
-  "root": "backend"
+  "root": "backend",
+  "build": {
+    "builder": "python"
+  },
+  "scripts": {
+    "start": "gunicorn app:app"
+  }
 }
