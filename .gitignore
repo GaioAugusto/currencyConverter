@@ -11,9 +11,10 @@ backend/.env
 backend/venv/
 backend/__pycache__/
 backend/*.pyc
+backend/*.pyo
+backend/*.db
 backend/data/
 backend/fetch_csv.log
-
 
 # General ignores
 .DS_Store
