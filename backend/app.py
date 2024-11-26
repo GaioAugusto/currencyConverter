@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load environment variables
-load_dotenv()
+#load_dotenv()
 
 # Database connection settings
 # db_config = {
@@ -25,7 +25,7 @@ db_config = {
     "dbname": os.getenv("DB_NAME"),
     "user": os.getenv("DB_USER"),
     "password": os.getenv("DB_PASSWORD"),
-    "port": os.getenv("DB_PORT", 5432),
+    "port": int(os.getenv("DB_PORT", 5432)),
 }
 
 # def get_db_connection():

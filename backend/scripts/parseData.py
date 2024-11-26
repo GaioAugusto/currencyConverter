@@ -120,7 +120,7 @@ def parse_data():
             dbname=os.getenv("DB_NAME"),
             user=os.getenv("DB_USER"),
             password=os.getenv("DB_PASSWORD"),
-            port=os.getenv("DB_PORT", 5432),
+            port=int(os.getenv("DB_PORT", 5432)),
         )
         cursor = conn.cursor()
         print("Database connection successful!")
