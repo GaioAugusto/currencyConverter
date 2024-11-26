@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS (adjust allowed origins for security in production)
+CORS(app)
 
 # Load environment variables
 load_dotenv()
@@ -16,17 +16,19 @@ db_config = {
     "user": os.getenv("DB_USER"),
     "password": os.getenv("DB_PASSWORD"),
     "database": os.getenv("DB_NAME"),
-    "port": int(os.getenv("DB_PORT", 3306)),  # Ensure port is correctly parsed
+    "port": int(os.getenv("DB_PORT", 3306)),  # Default MySQL port is 3306
 }
 
 def get_db_connection():
     """Establish and return a database connection."""
     try:
+        print(f"Connecting to database with config: {db_config}")  # Debug info
         conn = mysql.connector.connect(**db_config)
         return conn
     except mysql.connector.Error as err:
         print(f"Error connecting to the database: {err}")
         return None
+
 
 @app.route("/", methods=["GET"])
 def index():
@@ -52,4 +54,4 @@ def get_exchange_rates():
         conn.close()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)  # Ensure the app runs on the correct interface
+    app.run()
