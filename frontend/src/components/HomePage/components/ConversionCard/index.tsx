@@ -25,7 +25,6 @@ export const ConversionCard: React.FC<ConversionCardProps> = () => {
 
         setRates(ratesData);
 
-        // Set default currencies from the fetched rates
         if (ratesData.length >= 2) {
           setFromCurrency("USD");
           setToCurrency("EUR");
