@@ -97,7 +97,7 @@
 
 import pandas as pd
 import psycopg2
-from dotenv import load_dotenv, find_dotenv
+# from dotenv import load_dotenv, find_dotenv
 import os
 
 def create_table(cursor):
@@ -111,7 +111,7 @@ def create_table(cursor):
     print("Table 'exchange_rates' ensured to exist.")
 
 def parse_data():
-    load_dotenv(find_dotenv())
+    # load_dotenv(find_dotenv())
 
     # Database connection
     try:

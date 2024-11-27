@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import mysql.connector
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -40,15 +40,15 @@ db_config = {
 def get_db_connection():
     """Establish and return a database connection."""
     try:
-        print(f"Connecting to database with config: {db_config}")  # Debug info
+        db_config_safe = db_config.copy()
+        db_config_safe['password'] = '***'  # Mask the password
+        print(f"Connecting to database with config: {db_config_safe}")  # Debug info
         conn = psycopg2.connect(**db_config)
         return conn
     except psycopg2.Error as err:
-        print("Data from the database")
-        print("conn", conn)
-        print("host", os.getenv("DB_HOST"))
         print(f"Error connecting to the database: {err}")
         return None
+
 
 @app.route("/", methods=["GET"])
 def index():
