@@ -4,7 +4,6 @@ import os
 from io import BytesIO
 import logging
 
-# Configure logging
 logging.basicConfig(
     filename="fetch_csv.log",
     level=logging.INFO,

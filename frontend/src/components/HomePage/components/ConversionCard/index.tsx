@@ -19,8 +19,6 @@ export const ConversionCard: React.FC<ConversionCardProps> = () => {
         const data = await getExchangeRates();
         let ratesData = data.data;
 
-        // Add EUR with a rate of 1.0 if it's not present
-
         ratesData = [...ratesData, { currency_code: "EUR", rate: 1.0 }];
 
         setRates(ratesData);
@@ -37,7 +35,6 @@ export const ConversionCard: React.FC<ConversionCardProps> = () => {
     fetchRates();
   }, []);
 
-  // Calculate the exchange rate and result
   const getResult = useCallback(() => {
     if (!fromCurrency || !toCurrency || rates.length === 0) {
       console.log("getResult: Missing data");
@@ -62,7 +59,6 @@ export const ConversionCard: React.FC<ConversionCardProps> = () => {
     setResult(amount * calculatedRate);
   }, [fromCurrency, toCurrency, rates, amount]);
 
-  // Recalculate result whenever relevant state changes
   useEffect(() => {
     if (fromCurrency && toCurrency && rates.length > 0) {
       getResult();

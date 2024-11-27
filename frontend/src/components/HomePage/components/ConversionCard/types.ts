@@ -15,6 +15,4 @@ export interface ConversionCardViewProps {
   toCurrency: string;
   setToCurrency: React.Dispatch<React.SetStateAction<string>>;
   rate: number;
-
-  //getResult: () => void;
 }

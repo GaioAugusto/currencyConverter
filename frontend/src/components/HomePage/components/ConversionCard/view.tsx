@@ -9,10 +9,10 @@ export const ConversionCardView: ComponentType = ({
   ...props
 }) => {
   const handleSwitchCurrencies = () => {
-    // Swap the currencies by updating their states
     props.setFromCurrency(toCurrency);
     props.setToCurrency(fromCurrency);
   };
+
   return (
     <div className="border rounded-lg p-4 w-full bg-purple-50 shadow-md">
       <div className="flex flex-row space-x-4">
