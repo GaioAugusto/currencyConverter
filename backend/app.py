@@ -40,10 +40,14 @@ db_config = {
 def get_db_connection():
     """Establish and return a database connection."""
     try:
-        connection_string = os.getenv("DATABASE_URL")
+        connection_string = os.getenv("EXTERNAL_DATABASE_URL")
         if not connection_string:
-            raise ValueError("DATABASE_URL environment variable not set")
-        print("Connecting to database with connection string.")  # Debug info
+            raise ValueError("EXTERNAL_DATABASE_URL environment variable not set")
+        # Mask the password before printing
+        masked_connection_string = connection_string.replace(
+            connection_string.split(':')[2].split('@')[0], '***'
+        )
+        print(f"Connecting to database with connection string: {masked_connection_string}")  # Debug info
         conn = psycopg2.connect(connection_string)
         return conn
     except Exception as err:
