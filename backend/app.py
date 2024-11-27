@@ -44,6 +44,9 @@ def get_db_connection():
         conn = psycopg2.connect(**db_config)
         return conn
     except psycopg2.Error as err:
+        print("Data from the database")
+        print("conn", conn)
+        print("host", os.getenv("DB_HOST"))
         print(f"Error connecting to the database: {err}")
         return None
 
