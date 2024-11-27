@@ -40,15 +40,15 @@ db_config = {
 def get_db_connection():
     """Establish and return a database connection."""
     try:
-        db_config_safe = db_config.copy()
-        db_config_safe['password'] = '***'  # Mask the password
-        print(f"Connecting to database with config: {db_config_safe}")  # Debug info
-        conn = psycopg2.connect(**db_config)
+        connection_string = os.getenv("DATABASE_URL")
+        if not connection_string:
+            raise ValueError("DATABASE_URL environment variable not set")
+        print("Connecting to database with connection string.")  # Debug info
+        conn = psycopg2.connect(connection_string)
         return conn
-    except psycopg2.Error as err:
+    except Exception as err:
         print(f"Error connecting to the database: {err}")
         return None
-
 
 @app.route("/", methods=["GET"])
 def index():

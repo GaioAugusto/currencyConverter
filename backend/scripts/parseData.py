@@ -113,18 +113,14 @@ def create_table(cursor):
 def parse_data():
     # load_dotenv(find_dotenv())
 
-    # Database connection
     try:
-        conn = psycopg2.connect(
-            host=os.getenv("DB_HOST"),
-            dbname=os.getenv("DB_NAME"),
-            user=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASSWORD"),
-            port=int(os.getenv("DB_PORT", 5432)),
-        )
+        connection_string = os.getenv("DATABASE_URL")
+        if not connection_string:
+            raise ValueError("DATABASE_URL environment variable not set")
+        conn = psycopg2.connect(connection_string)
         cursor = conn.cursor()
         print("Database connection successful!")
-    except psycopg2.Error as err:
+    except Exception as err:
         print(f"Error: {err}")
         return
 
