@@ -90,7 +90,7 @@ export const ConversionCardView: React.FC<ConversionCardViewProps> = ({
         <div className="flex flex-col sm:flex-row items-center gap-4"> */}
       <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-4">
         <AmountCard amount={props.amount} setAmount={props.setAmount} />
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4 flex-shrink-0">
           <CurrencySelector
             placeholder="From"
             selectedCurrency={fromCurrency}
