@@ -24,8 +24,10 @@ export const AmountCardView: ComponentType = (props) => {
   };
 
   return (
-    <div className="border rounded-lg p-4 w-64 bg-purple-50 shadow-md">
-      {/* Placeholder Text */}
+    // <div className="border rounded-lg p-4 w-64 bg-purple-50 shadow-md">
+    //   {/* Placeholder Text */}
+    //   <div className="text-sm text-purple-700 mb-2">Amount</div>
+    <div className="border rounded-lg p-4 w-full sm:w-64 bg-purple-50 shadow-md">
       <div className="text-sm text-purple-700 mb-2">Amount</div>
       {/* Input Field */}
       <input
