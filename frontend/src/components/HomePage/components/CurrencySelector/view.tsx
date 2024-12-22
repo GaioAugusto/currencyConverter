@@ -9,10 +9,6 @@ export const CurrencySelectorView: React.FC<CurrencySelectorViewProps> = ({
   placeholder,
 }) => {
   return (
-    // <div className="border rounded-lg p-4 w-64 bg-purple-50 shadow-md">
-    //   {/* Render the placeholder */}
-    //   {placeholder && (
-    //     <div className="text-sm text-purple-700 mb-2">{placeholder}</div>
     <div className="border rounded-lg p-4 w-full sm:w-64 bg-purple-50 shadow-md">
       {placeholder && (
         <div className="text-sm text-purple-700 mb-2">{placeholder}</div>
