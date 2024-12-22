@@ -84,9 +84,12 @@ export const ConversionCardView: React.FC<ConversionCardViewProps> = ({
   return (
     <div className="border rounded-lg p-4 w-full max-w-xl bg-purple-50 shadow-md">
       {/* On small screens: vertical stack; on sm+ screens: horizontal layout */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      {/* <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <AmountCard amount={props.amount} setAmount={props.setAmount} />
 
+        <div className="flex flex-col sm:flex-row items-center gap-4"> */}
+      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-4">
+        <AmountCard amount={props.amount} setAmount={props.setAmount} />
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <CurrencySelector
             placeholder="From"

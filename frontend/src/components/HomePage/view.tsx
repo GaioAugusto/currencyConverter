@@ -34,7 +34,8 @@ export const HomePageView: ComponentType = () => {
     // </section>
     <section
       id="home"
-      className="min-h-screen pt-16 bg-gradient-to-b from-purple-50 to-purple-100 relative overflow-hidden"
+      // className="min-h-screen pt-16 bg-gradient-to-b from-purple-50 to-purple-100 relative overflow-hidden"
+      className="min-h-screen pt-16 bg-gradient-to-b from-purple-50 to-purple-100 relative"
     >
       {/* Floating Currency Symbols (responsive text sizes & positions) */}
       <div className="absolute top-10 left-10 sm:left-20 text-purple-300 text-6xl sm:text-8xl animate-float opacity-30">
