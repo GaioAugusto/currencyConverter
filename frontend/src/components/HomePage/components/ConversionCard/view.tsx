@@ -70,13 +70,13 @@ export const ConversionCardView: ComponentType = ({
       {/* Conversion Results */}
       <div className="pt-5 text-gray-700">
         <p className="text-lg font-medium text-purple-700">
-          {`${props.amount.toFixed(2)} ${fromCurrency} =`}
+          {`${props.amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${fromCurrency} =`}
         </p>
         <h1 className="text-3xl font-bold text-gray-900">
-          {`${props.result.toFixed(2)} ${toCurrency}`}
+          {`${props.result.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${toCurrency}`}
         </h1>
         <p className="text-sm text-gray-800">
-          {`1 ${fromCurrency} = ${props.rate.toFixed(2)} ${toCurrency}`}
+          {`1 ${fromCurrency} = ${props.rate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${toCurrency}`}
         </p>
       </div>
     </div>

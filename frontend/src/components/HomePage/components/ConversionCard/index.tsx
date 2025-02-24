@@ -40,21 +40,21 @@ export const ConversionCard: React.FC<ConversionCardProps> = () => {
       console.log("getResult: Missing data");
       return;
     }
-
+  
     const fromRate = rates.find(
       (item) => item.currency_code === fromCurrency
     )?.rate;
     const toRate = rates.find(
       (item) => item.currency_code === toCurrency
     )?.rate;
-
+  
     if (fromRate == null || toRate == null) {
       console.log("Invalid currency selected");
       return;
     }
-
+  
     const calculatedRate = toRate / fromRate;
-
+  
     setRate(calculatedRate);
     setResult(amount * calculatedRate);
   }, [fromCurrency, toCurrency, rates, amount]);
